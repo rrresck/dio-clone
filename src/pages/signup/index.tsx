@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
 import { Container, Title, Column, TitleSignup, SubtitleSignup, Row, Wrapper } from './styles';
+import { IFormSignature } from "./types";
 
 const schema = yup.object().shape({
     name: yup.string().required('Campo obrigatório.'),
@@ -20,7 +21,7 @@ const schema = yup.object().shape({
 const Signup = () => {
     const navigate = useNavigate()
 
-    const { control, formState: { errors } } = useForm({
+    const { control, formState: { errors } } = useForm<IFormSignature>({
         resolver: yupResolver(schema),
         mode: 'onChange',
     });
